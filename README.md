@@ -76,7 +76,8 @@ make
 After a successful compilation, the executable file  `queue` is created. Start by creating a poolfile in the `/dev/shm` directory
 
 ```
-touch /dev/shm/poolfile
+pmempool create obj /dev/shm/poolfile --layout queue
+
 ```
 
 The program takes two arguments : the path to the poolfile and the item (use any character). The following command runs the program on the poolfile created above and 'a' as the content of the node item.
