@@ -81,7 +81,7 @@ make
 #### Testing
 After a successful compilation, the executable file  `fifo` is created. You don't need to manually create the poolfile here; it is created in the program.
 
-The program takes two arguments : the path to the poolfile and the item (use any character). The following command runs the program on a poolfile and 'a' as the content of the node item. If the poolfile exists, the program uses it. Else, it creates a poolfile with the same name. 
+The program takes two arguments : the path to a poolfile and the item (use any character). The following command runs the program on a poolfile and 'a' as the content of the node item. If the poolfile exists, the program uses it. Else, it creates a poolfile with the same name. Be careful not to use the same poolfile used in the preceding program.
 
 ```
 ./fifo /dev/shm/poolfile a
