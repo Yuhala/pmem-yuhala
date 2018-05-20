@@ -87,7 +87,7 @@ The program takes two arguments : the path to a poolfile and the item (use any c
 ./fifo /dev/shm/poolfile a
 ```
 The program continuously prints statements indicating whether the item has been enqueued or dequeued from either queues.
-Hit `ctrl-` to start the signal handler in the program. The signal handler stops the infinite loop and tells us whether our program is fault resilient or not.
+Hit `ctrl-c` to start the signal handler in the program. The signal handler stops the infinite loop and tells us whether our program is fault resilient or not.
 
 #### Troubleshooting
 In case you get an `Aborted (core dumped)` error after running the program, simply delete the poolfile and create a new one.
