@@ -1,9 +1,9 @@
 # pmem-yuhala
 
-This repository contains two folders with programs based on .[PMDK]( https://github.com/pmem/pmdk). The programs use the libpmemobj library to implement fault resilient algorithms. This readme is a quick guide on how to easily test the programs.
+This repository contains two folders with programs based on [PMDK]( https://github.com/pmem/pmdk). The programs use the libpmemobj library to implement fault resilient algorithms. This readme is a quick guide on how to easily test the programs.
 
 ### Prerequisites
-In order to follow this tutorial with minimal hiccups, clone the .[PMDK]( https://github.com/pmem/pmdk) from github; This will facilitate the build process of the programs as it contains all the libraries we used.
+In order to follow this tutorial with minimal hiccups, clone the [PMDK]( https://github.com/pmem/pmdk) from github; This will facilitate the build process of the programs as it contains all the libraries we used.
 Use the following command to clone the PMDK to your local environment
 
 ```
@@ -14,7 +14,7 @@ git clone https://github.com/pmem/pmdk.git
 ## How to test the programs 
 Start by cloning this git to your machine 
 ```
-git clone https://github/Yuhala/pmem-yuhala.git
+git clone https://github.com/Yuhala/pmem-yuhala.git
 
 ```
 Place the two folders : _queue-array_ and _queue-list_ in the _pmdk/src/examples/libpmemobj_ directory. This is a quick and dirty way to ease compilation later. This directory should be your main working directory.
