@@ -12,7 +12,7 @@ git clone https://github.com/pmem/pmdk.git
 ```
 
 ## How to test the programs 
-Start by cloning this git to your machine 
+Start by cloning this project to your machine 
 ```
 git clone https://github.com/Yuhala/pmem-yuhala.git
 
