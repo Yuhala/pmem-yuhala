@@ -17,7 +17,7 @@ Start by cloning this project to your machine
 git clone https://github.com/Yuhala/pmem-yuhala.git
 
 ```
-Place the two folders : `queue-array` and `queue-list` in the `pmdk/src/examples/libpmemobj` directory. This is a quick and dirty way to ease compilation later. This directory should be your main working directory.
+Place the two folders : `queue-array` and `queue-llist` in the `pmdk/src/examples/libpmemobj` directory. This is a quick and dirty way to ease compilation later. This directory should be your main working directory.
 
 ### Compiling and Testing the queue-array program
 #### Quick intro
