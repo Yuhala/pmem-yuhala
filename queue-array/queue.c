@@ -63,9 +63,10 @@ struct queue { /* array-based queue container */
 };
 
 struct root {
-    TOID(struct queue) q1;
-    TOID(struct queue) q2;
+    TOID(struct queue) queue;
+   
 };
+
 
 //This flag controls the infinite loop
 int flag = 1;
@@ -211,25 +212,27 @@ main(int argc, char *argv[]) {
 
 
 
-    TOID(struct root) root = POBJ_ROOT(pop, struct root);
-    struct root *rootp = D_RW(root);
+    TOID(struct root) root1 = POBJ_ROOT(pop, struct root);
+    TOID(struct root) root2 = POBJ_ROOT(pop, struct root);
+    struct root *rootp1 = D_RW(root1);
+    struct root *rootp2 = D_RW(root2);
     size_t capacity = 1;
 
 
     //Creating both queues
-    if (queue_new(pop, &rootp->q1, capacity) != 0)
+    if (queue_new(pop, &rootp1->queue, capacity) != 0)
         fail("failed to create a new q1");
-    if (queue_new(pop, &rootp->q2, capacity) != 0)
+    if (queue_new(pop, &rootp2->queue, capacity) != 0)
         fail("failed to create a new q2");
 
     //Enqueuing item in q1
 
     TX_BEGIN(pop) {
 
-        if (D_RW(rootp->q1) == NULL)
+        if (D_RW(rootp1->queue) == NULL)
             fail("q1 must exist");
 
-        if (queue_enqueue(pop, D_RW(rootp->q1),
+        if (queue_enqueue(pop, D_RW(rootp1->queue),
                 argv[2], strlen(argv[2]) + 1) != 0)
             fail("failed to insert item in q1");
     }
@@ -247,17 +250,17 @@ main(int argc, char *argv[]) {
         TX_BEGIN(pop) {
             inq1 = 0;
             inq2 = 1;
-            if (D_RW(rootp->q1) == NULL)
+            if (D_RW(rootp1->queue) == NULL)
                 fail("q1 must exist");
 
-            if (queue_dequeue(pop, D_RW(rootp->q1)) != 0)
-                fail("failed to remove item from q1");
+            if (queue_dequeue(pop, D_RW(rootp1->queue)) != 0)
+                fail("failed to remove item from q1")
 
             if (D_RW(rootp->q2) == NULL)
 
                 fail("queue must exist");
 
-            if (queue_enqueue(pop, D_RW(rootp->q2),
+            if (queue_enqueue(pop, D_RW(rootp2->queue),
                     argv[2], strlen(argv[2]) + 1) != 0)
                 fail("failed to insert item in q2");
 
@@ -271,26 +274,29 @@ main(int argc, char *argv[]) {
         //Dequeue item from q2 and enqueue item in q1
 
         TX_BEGIN(pop) {
-            inq1 = 1;
-            inq2 = 0;
-            if (D_RW(rootp->q2) == NULL)
+          
+            if (D_RW(rootp2->queue) == NULL)
                 fail("q2 must exist");
 
-            if (queue_dequeue(pop, D_RW(rootp->q2)) != 0)
+            if (queue_dequeue(pop, D_RW(rootp2->queue)) != 0)
                 fail("failed to remove item from q2");
+                   inq2 = 0;
+        
 
-            if (D_RW(rootp->q1) == NULL)
+            if (D_RW(rootp1->queue) == NULL)
                 fail("q1 must exist");
 
-            if (queue_enqueue(pop, D_RW(rootp->q1),
+            if (queue_enqueue(pop, D_RW(rootp1->queue),
                     argv[2], strlen(argv[2]) + 1) != 0)
                 fail("failed to insert item in q1");
+                 inq1 = 1;  
 
 
 
         }
         TX_ONABORT{
-            abort();} TX_END
+            abort();
+         } TX_END
                 {
             printf("inserted item in q1\n");
             printf("removed item from q2\n");}
