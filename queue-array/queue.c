@@ -235,6 +235,7 @@ main(int argc, char *argv[]) {
         if (queue_enqueue(pop, D_RW(rootp1->queue),
                 argv[2], strlen(argv[2]) + 1) != 0)
             fail("failed to insert item in q1");
+            inq1=1;
     }
     TX_ONABORT
             {
@@ -248,13 +249,13 @@ main(int argc, char *argv[]) {
         //Dequeue item from q1 and enqueue item in q2
 
         TX_BEGIN(pop) {
-            inq1 = 0;
-            inq2 = 1;
+           
             if (D_RW(rootp1->queue) == NULL)
                 fail("q1 must exist");
 
             if (queue_dequeue(pop, D_RW(rootp1->queue)) != 0)
                 fail("failed to remove item from q1")
+                 inq1 = 0;         
 
             if (D_RW(rootp->q2) == NULL)
 
@@ -263,6 +264,7 @@ main(int argc, char *argv[]) {
             if (queue_enqueue(pop, D_RW(rootp2->queue),
                     argv[2], strlen(argv[2]) + 1) != 0)
                 fail("failed to insert item in q2");
+                   inq2 = 1;
 
         }
         TX_ONABORT{
