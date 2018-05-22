@@ -118,12 +118,12 @@ main(int argc, const char *argv[]) {
 
 
 
-    TOID(struct fifo_root) root = POBJ_ROOT(pop, struct fifo_root);
-    //TOID(struct fifo_root) root2 = POBJ_ROOT(pop, struct fifo_root);
+    TOID(struct fifo_root) root1 = POBJ_ROOT(pop, struct fifo_root);
+    TOID(struct fifo_root) root2 = POBJ_ROOT(pop, struct fifo_root);
 
     //retrieving the two queues inside the pool
-    struct tqueuehead *tqhead1 = &D_RW(root)->head;
-    struct tqueuehead *tqhead2 = &D_RW(root)->head;
+    struct tqueuehead *tqhead1 = &D_RW(root1)->head;
+    struct tqueuehead *tqhead2 = &D_RW(root2)->head;
 
     TOID(struct tqnode) node;
 
