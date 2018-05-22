@@ -70,7 +70,7 @@ In case you get an `Aborted (core dumped)` error after running the program, simp
 
 ### Compiling and Testing the queue-llist program
 #### Quick intro
-This program is similar to the one above. It creates two persistent queues q1 and q2 based on arrays. It then continuously enqueues and dequeues an item from both lists alternatively until the `ctrl-c` signal is sent to the process. The program then tells us whether the item is present in either queues.
+This program is similar to the one above. It creates two persistent queues q1 and q2 based on linked lists. It then continuously enqueues and dequeues an item from both lists alternatively until the `ctrl-c` signal is sent to the process. The program then tells us whether the item is present in either queues.
 #### Compiling 
 To compile the queue-llist program cd into the queue-llist directory, assuming your current working directory is `pmdk/src/examples/libpmemobj` . Then run the make file
 
